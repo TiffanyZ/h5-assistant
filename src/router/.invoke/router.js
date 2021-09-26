@@ -7,13 +7,18 @@ export const routes = [{
     path: '/hello',
   },
   {
+    component: () => import('@/views/home/index.vue'),
+    name: 'home',
+    path: '/home',
+  },
+  {
     component: () => import('@/views/svgIcons/index.vue'),
     name: 'svgIcons',
     path: '/svgIcons',
   },
   {
     path: '/',
-    redirect: '/hello'
+    redirect: '/home'
   },
 ];
 const router = new Router({

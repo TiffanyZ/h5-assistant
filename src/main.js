@@ -10,6 +10,8 @@ import './filters';
 import './bus';
 import './services';
 import './registerServiceWorker';
+import '@winner-fed/win-ui/lib/button/style';
+import './wui';
 
 /* eslint-disable */
 Vue.config.productionTip = process.env.NODE_ENV === 'production';

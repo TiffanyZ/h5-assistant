@@ -1,4 +1,10 @@
-const plugins = [];
+const plugins = [
+  ['import', {
+    libraryName: 'wui',
+    libraryDirectory: 'es',
+    style: true
+  }, 'wui']
+];
 
 if (process.env.NODE_ENV === 'production') {
   // plugins.push('transform-remove-console');
