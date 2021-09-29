@@ -1,0 +1,76 @@
+.comp-recommend-card {
+    padding-top: 12px;
+    box-sizing: border-box;
+    .item-recommend {
+        width: 250px;
+    }
+    .swiper-container {
+        padding-bottom: 20px;
+        box-sizing: border-box;
+    }
+    .rec-card .rec-title,
+    .rec-card .rec-content {
+        text-align: center;
+        background-color: #fff;
+    }
+    .rec-card .rec-title {
+        line-height: 30px;
+        color: #9ec0ff;
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+    }
+    .rec-card .rec-content {
+        min-height: 160px;
+        border-radius: 0 0 5px 5px;
+    }
+    .rec-card .rec-content li {
+        line-height: 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+        &.fadeOut {
+            animation-name: fadeOutUp;
+        }
+        &.fadeIn {
+            animation-name: fadeInUp;
+        }
+    }
+    .rec-card .rec-content .last-li {
+        padding-bottom: 5px;
+        box-sizing: border-box;
+    }
+    .rec-card .rec-content .rec-replay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        font-size: 12px;
+        color: #999;
+        line-height: 30px;
+    }
+    .swiper-pagination {
+        width: 100%;
+        bottom: 0;
+    }
+     @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes fadeOutUp {
+      0% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+      }
+    }
+}

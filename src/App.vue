@@ -58,6 +58,19 @@ export default {
   height: 100%;
   overflow: hidden;
 }
+html,
+body,
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  font-size: 14px;
+  background-color: #fff;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
 .fade-enter-active,
 .fade-leave-active {

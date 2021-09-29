@@ -1,40 +1,76 @@
 <template>
-  <div class="page-home">
-    home 视图
-    <win-button type="primary">主要按钮</win-button>
+  <div class="page-home" :style="{ height: `${bodyHeight}px` }">
+    <div class="home-main">
+      <!-- 问候语 -->
+      <div class="greeting">
+        <p class="greeting-text">您好，我是智能助手！123456</p>
+      </div>
+      <!-- 悬挂问题(置顶问题) -->
+      <div class="top-question">
+        <div class="top-tag" v-for="(item, i) in topQuestion" :key="i">
+          <win-tag round type="primary">{{ item || "" }}</win-tag>
+        </div>
+      </div>
+      <!-- 提问引导卡 -->
+      <recommend-card @sendMsg="sendQuestionFunc"></recommend-card>
+    </div>
+    <div class="home-bottom">
+      <input type="text" class="input-Question" placeholder="在这里输入想说的话…" v-model="sendQuestion" />
+      <div class="send-btn">
+        <img :src="sendImg" alt="send">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { topList, recommendList, swiperOptions } from '../../common/comData/homeData';
+import { RecommendCard } from '@components';
 export default {
-  name: 'home',
+  name: "home",
 
   mixins: [],
 
   components: {
+    RecommendCard
   },
 
   data() {
-    return {};
+    return {
+      bodyHeight: "",
+      topQuestion: topList, // 置顶卡片列表
+      sendQuestion: '',
+      sendImg: require("@assets/img/iconsend.png"),
+    };
   },
 
-  computed: {},
+  computed: {
+  },
 
   watch: {},
 
-  created() {
-  },
+  created() {},
 
   mounted() {
+    this.setBodyHeight();
   },
 
-  destroyed() {
-  },
+  destroyed() {},
 
-  methods: {}
-}
+  methods: {
+    // 固定页面高度（原因：键盘弹出后webview高度会变高，因此要固定页面高度）
+    setBodyHeight() {
+      setTimeout(() => {
+        this.bodyHeight = document.body.clientHeight;
+      }, 0);
+    },
+    sendQuestionFunc(val) {
+      console.log(val);
+    }
+  }
+};
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-  @import "./style.less";
+@import "./style.less";
 </style>
