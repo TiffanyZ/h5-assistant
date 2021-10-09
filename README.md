@@ -137,3 +137,30 @@ yarn run report
 [MIT](https://github.com/cklwblove/vue-cli3-template/blob/master/LICENSE)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcklwblove%2Fvue-cli3-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcklwblove%2Fvue-cli3-template?ref=badge_large)
+
+## electron相关
+添加electron插件：vue add electron-builder --registry=https://registry.npm.taobao.org
+执行：npm run electron:serve
+
+### 打包成一个可执行的文件exe
+执行：npm run electron:build
+打包出现问题～
+我给出的建议就是 把node_modules目录下的 electron 删除，用cnpm 安装 electron
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+查看是否安装成功了：
+cnpm -v
+重新安装 electron
+cnpm i electron
+打包：npm run electron:build
+
+### 自定义图标
+（1）安装打包工具：cnpm i electron-builder --D
+（2）安装icon工具：cnpm i electron-icon-builder 
+（3）需要在package.json中scripts添加build-icon指令：
+  "scripts": {
+    "build-icon": "electron-icon-builder --input=./public/longzhu.jpg --output=build --flatten"
+  },
+（4）命令行输入：npm run build-icon
+build完成之后，生成了不同大小的图片
+
+### vue.config.js添加基础配置
