@@ -13,10 +13,12 @@
       </div>
       <!-- 提问引导卡 -->
       <recommend-card @sendMsg="sendQuestionFunc"></recommend-card>
+      <!-- 问答组件 -->
+      <!-- <chat-room :chatList="chatList"></chat-room> -->
     </div>
     <div class="home-bottom">
       <input type="text" class="input-Question" placeholder="在这里输入想说的话…" v-model="sendQuestion" />
-      <div class="send-btn">
+      <div class="send-btn" @click="sendQuestionFunc(sendQuestion)">
         <img :src="sendImg" alt="send">
       </div>
     </div>
@@ -24,7 +26,7 @@
 </template>
 
 <script>
-import { topList, recommendList, swiperOptions } from '../../common/comData/homeData';
+import { topList } from '../../common/comData/homeData';
 import { RecommendCard } from '@components';
 export default {
   name: "home",
@@ -32,7 +34,8 @@ export default {
   mixins: [],
 
   components: {
-    RecommendCard
+    RecommendCard,
+    // ChatRoom
   },
 
   data() {
@@ -41,6 +44,7 @@ export default {
       topQuestion: topList, // 置顶卡片列表
       sendQuestion: '',
       sendImg: require("@assets/img/iconsend.png"),
+      chatList: []
     };
   },
 
@@ -65,7 +69,15 @@ export default {
       }, 0);
     },
     sendQuestionFunc(val) {
+      console.log('send-msg');
       console.log(val);
+      // 根据问题返回答案
+      let obj = {
+        questionTxt: val,
+        answerType: 1,
+        answerContnt: '测试答案'
+      };
+      this.chatList.push(obj);
     }
   }
 };

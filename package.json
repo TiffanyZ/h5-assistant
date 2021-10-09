@@ -7,29 +7,35 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "node build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:zip": "node build/zip.js",
+    "lint": "vue-cli-service lint",
     "deploy": "npm run build && npm run build:zip",
-    "report": "vue-cli-service build --report",
+    "build:zip": "node build/zip.js",
     "carefree-dev": "cross-env NODE_ENV=carefree carefree_env=dev vue-cli-service build --watch",
     "changlog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "compress": "node build/tinypng.js",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
     "inspect": "vue inspect > output.js --verbose",
-    "lint": "vue-cli-service lint",
-    "lint-staged:js": "eslint --ext .js,.vue src",
-    "lint:style": "vue-cli-service lint:style",
-    "lint:prettier": "check-prettier lint",
     "lint-staged": "lint-staged",
-    "prettier": "node ./scripts/prettier.js",
+    "lint-staged:js": "eslint --ext .js,.vue src",
+    "lint:prettier": "check-prettier lint",
+    "lint:style": "vue-cli-service lint:style",
     "new": "plop",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "prettier": "node ./scripts/prettier.js",
     "release": "sh build/release.sh",
+    "report": "vue-cli-service build --report",
     "skeleton": "npm run skeleton-json && npm run skeleton-html ",
     "skeleton-html": "node ./src/skeleton/skeleton.js",
     "skeleton-json": "node ./build/skeleton.js",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext js --es6",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "towebp": "node build/towebp.js",
-    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
+    "build-icon": "electron-icon-builder --input=./public/shizi.jpg --output=build --flatten"
   },
+  "main": "background.js",
   "dependencies": {
     "@liwb/cloud-utils": "^1.4.5",
     "@winner-fed/win-ui": "0.0.3",
@@ -64,6 +70,9 @@
     "compression-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "electron": "^13.0.0",
+    "electron-builder": "^22.11.7",
+    "electron-devtools-installer": "^3.1.0",
     "eslint": "^6.6.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
@@ -87,6 +96,7 @@
     "stylelint-order": "^3.1.1",
     "tasksfile": "^5.1.0",
     "tinify": "^1.5.0",
+    "vue-cli-plugin-electron-builder": "~2.1.1",
     "vue-cli-plugin-qrcode": "0.0.6",
     "vue-router-invoke-webpack-plugin": "^0.3.0",
     "vue-server-renderer": "^2.6.10",
@@ -94,6 +104,14 @@
     "webpack-node-externals": "^1.7.2",
     "webstorm-disable-index": "^1.2.0"
   },
+  "checkFiles": [
+    "src/**/*.js*",
+    "src/**/*.ts*",
+    "src/**/*.less",
+    "src/**/*.vue",
+    "plop-templates/**/*.js*",
+    "scripts/**/*.js"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -132,13 +150,5 @@
     "gen:view": "自动生成视图相关文件（.vue,.less）",
     "compress": ".jpg或.png格式图片压缩并且转换Webp格式文件"
   },
-  "tinypngkey": "GRbtc5JbDBMyRfjKdKHjPtgcHz7q3cmw",
-  "checkFiles": [
-    "src/**/*.js*",
-    "src/**/*.ts*",
-    "src/**/*.less",
-    "src/**/*.vue",
-    "plop-templates/**/*.js*",
-    "scripts/**/*.js"
-  ]
+  "tinypngkey": "GRbtc5JbDBMyRfjKdKHjPtgcHz7q3cmw"
 }
